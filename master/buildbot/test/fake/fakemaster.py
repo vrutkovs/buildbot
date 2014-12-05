@@ -176,8 +176,6 @@ class FakeMaster(object):
 def make_master(wantMq=False, wantDb=False, wantData=False,
                 testcase=None, url=None, **kwargs):
     master = FakeMaster(**kwargs)
-    if url:
-        master.buildbotURL = url
     if wantData:
         wantMq = wantDb = True
     if wantMq:

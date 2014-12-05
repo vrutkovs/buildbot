@@ -41,11 +41,12 @@ class Test(www.WwwTestMixin, unittest.TestCase):
         self.master = fakemaster.make_master()
         self.svc = self.master.www = service.WWWService(self.master)
 
-    def makeConfig(self, **kwargs):
+    def makeConfig(self, url='h:/', **kwargs):
         pwd = os.getcwd()
-        w = dict(url='h:/', port=None, public_html=pwd, auth=auth.NoAuth(), logfileName='l')
+        w = dict(port=None, public_html=pwd, auth=auth.NoAuth(), logfileName='l')
         w.update(kwargs)
         new_config = mock.Mock()
+        new_config.buildbotURL = url
         new_config.www = w
         self.master.config = new_config
         return new_config
